@@ -156,6 +156,12 @@ hist(DATA$Biomass[DATA$Fjord == "Nordfjord"], add = T, freq = FALSE, col = "dark
 curve(dnorm(x, mean=mean(DATA[1:3,3]), sd = sd(DATA[1:3,3])), add = TRUE, col="Orange", lwd = 2)
 curve(dnorm(x, mean=mean(DATA[4:6,3]), sd = sd(DATA[4:6,3])), add = TRUE, col="black", lwd = 2)
 
+#T-test to see can we reject the H0= There is no difference in adundance of copepods between fjords.
+t.test(copepods$Scaled.Copepods, y = NULL,
+       mu = 0, paired = FALSE, var.equal = FALSE,
+       conf.level = 0.95)
+# p-value = 3.565e-07 < 0,05 --> REJECT H0 
+
 #t-test mess 
 mean(DATA[1:3,3])#Mistfjord
 mean(DATA$Biomass[DATA$Fjord == "Mistfjord"])
