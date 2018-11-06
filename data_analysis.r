@@ -86,6 +86,16 @@ ggplot(data = CTD, aes(x = Depth, y = Temp, by = Ser, color = Ser)) +
 #DATA ANALYSIS ####
 plot(DATA0[,-c(1,5:16,19:20)])#general plot with copepods_all and zooplankton_all and without coordinates, ID
 
+####GROUP 2 - abundance of copepods between fjords:
+#table for just copepods 
+copepods <- DATA[,c(1:2,8:10,23, 27)]
+
+
+#Normality test to prove that our data is parametric 
+#test for difference: x=fjords y=count of copepods
+m1 <- glm(copepods$Scaled.Copepods ~ copepods$Fjord)
+shapiro.test(resid(m1)) #is parametric because  p-value = 0.5534
+#Our data is parametric
 
 #simple linear regression ####
 fit = lm(data=DATA0, Biomass ~ Copepods)
